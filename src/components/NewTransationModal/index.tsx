@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import closeImg from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
+import { api } from '../../services/api';
 import { Container, TransationTypeContainer, RadioBox } from './styles';
 
 interface NewTransitionModalProps {
@@ -20,6 +21,15 @@ export function NewTransitionModal({isOpen, onRequestClose}: NewTransitionModalP
 
   function handleCreateNewTransition (event:FormEvent) {
     event.preventDefault()
+
+    const data = {
+      title,
+      value,
+      category,
+      type
+    }
+
+    api.post('/transactions', data)
   }
   
   return (
